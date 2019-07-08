@@ -1,14 +1,16 @@
+# -*- coding: utf-8 -*-
+
 import requests
 import html
 from urllib.parse import unquote_plus
 
-from orbis import app
-from orbis.core.aggregation import AggregationBaseClass
+from orbis_eval import app
+from orbis_eval.core.aggregation import AggregationBaseClass
 
-import orbis_plugin_aggregation_dbpedia_entity_types as dbpedia_entity_types
+from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
 
 
-class AidaAggregator(AggregationBaseClass):
+class Main(AggregationBaseClass):
 
     def query(self, text, item):
         service_url = 'https://gate.d5.mpi-inf.mpg.de/aida/service/disambiguate'
@@ -50,6 +52,6 @@ class AidaAggregator(AggregationBaseClass):
             file_entities.append(item)
         return file_entities
 
+
 if __name__ == '__main__':
     print(dir(app))
-    app.logger.error("TESTTTTTTTTTTTTTTTTTT")
