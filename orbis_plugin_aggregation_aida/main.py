@@ -12,7 +12,7 @@ from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity
 
 class Main(AggregationBaseClass):
 
-    def query(self, text, item):
+    def query(self, item):
         service_url = 'https://gate.d5.mpi-inf.mpg.de/aida/service/disambiguate'
         data = {'text': item['corpus']}
         try:
@@ -24,6 +24,7 @@ class Main(AggregationBaseClass):
 
     def map_entities(self, response, item):
         file_entities = []
+
         for item in response["mentions"]:
             if len(item["allEntities"]) <= 0:
                 continue
@@ -51,7 +52,3 @@ class Main(AggregationBaseClass):
             item["surfaceForm"] = item["name"]
             file_entities.append(item)
         return file_entities
-
-
-if __name__ == '__main__':
-    print(dir(app))
