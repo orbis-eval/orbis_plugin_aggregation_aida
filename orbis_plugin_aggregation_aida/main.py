@@ -5,7 +5,7 @@ import html
 from urllib.parse import unquote_plus
 
 from orbis_eval import app
-from orbis_eval.core.aggregation import AggregationBaseClass
+from orbis_eval.core.base import AggregationBaseClass
 
 from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
 
