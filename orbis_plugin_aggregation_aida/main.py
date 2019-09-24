@@ -9,6 +9,9 @@ from orbis_eval.core.base import AggregationBaseClass
 
 from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
 
+import logging
+logger = logging.getLogger("AIDA")
+
 
 class Main(AggregationBaseClass):
 
@@ -18,12 +21,15 @@ class Main(AggregationBaseClass):
         try:
             response = requests.post(service_url, data=data).json()
         except Exception as exception:
-            app.logger.error(f"Query failed: {exception}")
+            logger.error(f"Query failed: {exception}")
             response = None
         return response
 
     def map_entities(self, response, item):
         file_entities = []
+
+        if not response:
+            return None
 
         for item in response["mentions"]:
             if len(item["allEntities"]) <= 0:
