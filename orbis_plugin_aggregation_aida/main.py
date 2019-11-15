@@ -41,7 +41,9 @@ class Main(AggregationBaseClass):
             item["key"] = item["key"].replace("\n", "")
             item["key"] = item["key"].replace("http://en.wikipedia.org/wiki/", "http://dbpedia.org/resource/")
             item["key"] = item["key"].replace(" ", "_")
+
             types = response["entityMetadata"][identifier]["type"]
+
             if 'YAGO_wordnet_person_100007846' in types:
                 item["entity_type"] = 'Person'
             elif 'YAGO_yagoGeoEntity' in types:
