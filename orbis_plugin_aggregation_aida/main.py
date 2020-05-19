@@ -4,9 +4,7 @@ import requests
 import html
 from urllib.parse import unquote_plus
 
-from orbis_eval import app
 from orbis_eval.core.base import AggregationBaseClass
-
 from orbis_plugin_aggregation_dbpedia_entity_types import Main as dbpedia_entity_types
 
 import logging
@@ -51,7 +49,7 @@ class Main(AggregationBaseClass):
             elif 'YAGO_wordnet_organization_108008335' in types:
                 item["entity_type"] = 'Organization'
             else:
-                item["entity_type"] = 'NoType'
+                item["entity_type"] = 'undefined'
 
             item["entity_type"] = dbpedia_entity_types.normalize_entity_type(item["entity_type"])
 
